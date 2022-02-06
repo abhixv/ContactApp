@@ -4,9 +4,7 @@ import 'package:contactapp/views/custom_text_field.dart';
 import 'package:contactapp/views/service/services.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
-import 'package:flutter_dialpad/flutter_dialpad.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 class CallHistoryPage extends StatefulWidget {
@@ -18,9 +16,9 @@ class CallHistoryPage extends StatefulWidget {
 
 class _CallHistoryPageState extends State<CallHistoryPage> {
   List<Contact>? contacts;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getContact();
   }
@@ -29,7 +27,6 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
     if (await FlutterContacts.requestPermission()) {
       contacts = await FlutterContacts.getContacts(
           withProperties: true, withPhoto: true);
-      print(contacts);
       setState(() {});
     }
   }
@@ -187,62 +184,6 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                 );
               },
             ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey.withOpacity(0.3),
-        child: const Icon(
-          FluentSystemIcons.ic_fluent_dialpad_filled,
-          size: 30,
-          color: Colors.white,
-        ),
-        onPressed: () => getDialPad(context),
-      ),
-    );
-  }
-
-  getDialPad(BuildContext context) {
-    TextEditingController otpController = TextEditingController();
-    return showModalBottomSheet(
-      isScrollControlled: true,
-      backgroundColor: Colors.black,
-      barrierColor: Colors.transparent,
-      context: context,
-      builder: (context) {
-        return Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: const TextField(
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                      ),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "hello",
-                          hintStyle: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                  const Center(
-                    child: Icon(
-                      FluentSystemIcons.ic_fluent_backspace_regular,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
-        );
-      },
     );
   }
 

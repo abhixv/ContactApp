@@ -18,8 +18,6 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   void initState() {
     super.initState();
     widget.update = (text) {
-      print('called: ' + text);
-
       setState(() {
         t1.text = text;
       });
