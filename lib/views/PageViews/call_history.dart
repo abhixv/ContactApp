@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:contactapp/views/custom_text_field.dart';
 import 'package:contactapp/views/service/services.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
@@ -42,13 +43,14 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
           padding: EdgeInsets.only(left: 10),
           child: Icon(Icons.search),
         ),
-        title: const TextField(
-          style: TextStyle(color: Colors.white),
-          decoration: InputDecoration(
-              hintText: "Search Contacts",
-              hintStyle: TextStyle(color: Colors.white),
-              border: InputBorder.none),
-        ),
+        // title: const TextField(
+        //   style: TextStyle(color: Colors.white),
+        //   decoration: InputDecoration(
+        //       hintText: "Search Contacts",
+        //       hintStyle: TextStyle(color: Colors.white),
+        //       border: InputBorder.none),
+        // ),
+        title: PhoneTextField(),
       ),
       backgroundColor: Colors.black,
       body: (contacts) == null
