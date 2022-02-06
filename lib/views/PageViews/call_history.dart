@@ -67,10 +67,10 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                       contacts![index].name.last, num),
                   child: Dismissible(
                     key: UniqueKey(),
-                    background: slideRightBackground(),
-                    secondaryBackground: slideLeftBackground(),
+                    background: slideLeftBackground(),
+                    secondaryBackground: slideRightBackground(),
                     confirmDismiss: (direction) async {
-                      if (direction == DismissDirection.endToStart) {
+                      if (direction == DismissDirection.startToEnd) {
                         final bool res = await showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -193,7 +193,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
       color: Colors.green,
       child: Align(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: const <Widget>[
             SizedBox(
               width: 20,
@@ -205,17 +205,20 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
             SizedBox(
               width: 10,
             ),
-            Text(
-              "Call now",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Call now",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300,
+                ),
+                textAlign: TextAlign.right,
               ),
-              textAlign: TextAlign.left,
             ),
           ],
         ),
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.centerRight,
       ),
     );
   }
@@ -225,26 +228,29 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
       color: Colors.red,
       child: Align(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: const <Widget>[
             Icon(
               Icons.delete,
               color: Colors.white,
             ),
-            Text(
-              " Delete",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                " Delete",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300,
+                ),
+                textAlign: TextAlign.left,
               ),
-              textAlign: TextAlign.right,
             ),
             SizedBox(
               width: 20,
             ),
           ],
         ),
-        alignment: Alignment.centerRight,
+        alignment: Alignment.centerLeft,
       ),
     );
   }
