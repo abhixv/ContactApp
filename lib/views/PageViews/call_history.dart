@@ -63,7 +63,8 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                     ? (contacts![index].phones.first.number)
                     : "--";
                 return InkWell(
-                  onTap: () {},
+                  onTap: () => getDetail(context, contacts![index].name.first,
+                      contacts![index].name.last, num),
                   child: Dismissible(
                     key: UniqueKey(),
                     background: slideRightBackground(),
@@ -246,5 +247,83 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
         alignment: Alignment.centerRight,
       ),
     );
+  }
+
+  getDetail(BuildContext context, String firstName, String lastName,
+      String phoneNumber) {
+    return showModalBottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.black,
+        barrierColor: Colors.transparent,
+        context: context,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.5,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.black,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      color: getRandomElement(randomColor),
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10))),
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.white,
+                    size: MediaQuery.of(context).size.width * 0.5,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ListTile(
+                  title: Text(
+                    "$firstName $lastName",
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 25),
+                  ),
+                ),
+                const Divider(
+                  color: Colors.grey,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                ListTile(
+                  title: const Text(
+                    "Phone Number",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 18),
+                  ),
+                  subtitle: Text(
+                    phoneNumber,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 14),
+                  ),
+                  trailing: InkWell(
+                    onTap: () async {
+                      await FlutterPhoneDirectCaller.callNumber(phoneNumber);
+                    },
+                    child: const Icon(
+                      Icons.call,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 }
