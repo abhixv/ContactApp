@@ -32,6 +32,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance!.removeObserver(this);
+    numberController.dispose();
     super.dispose();
   }
 
@@ -78,7 +79,14 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                           parent: BouncingScrollPhysics(
                               parent: AlwaysScrollableScrollPhysics())),
                       itemBuilder: (context, index) {
-                        return GestureDetector(
+                        return InkWell(
+                          onTap: () => getDetail(
+                              context,
+                              cl.getTitle(entries!.elementAt(index)),
+                              cl.formatDate(DateTime.fromMillisecondsSinceEpoch(
+                                  entries.elementAt(index).timestamp!)),
+                              cl.getTime(entries.elementAt(index).duration!),
+                              entries.elementAt(index).number!),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 10),
@@ -537,5 +545,108 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
         ),
       ],
     );
+  }
+
+  getDetail(BuildContext context, String firstName, String date,
+      String duration, String phoneNumber) {
+    return showModalBottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.black,
+        barrierColor: Colors.transparent,
+        context: context,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.black,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: getRandomElement(randomColor),
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10))),
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: MediaQuery.of(context).size.width * 0.5,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ListTile(
+                    title: Text(
+                      firstName,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 25),
+                    ),
+                    subtitle: Text(
+                      date,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 16),
+                    ),
+                  ),
+                  const Divider(
+                    color: Colors.grey,
+                  ),
+                  ListTile(
+                    title: const Text(
+                      "Duration",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 18),
+                    ),
+                    subtitle: Text(
+                      duration,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 16),
+                    ),
+                  ),
+                  const Divider(
+                    color: Colors.grey,
+                  ),
+                  ListTile(
+                    title: const Text(
+                      "Phone Number",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 18),
+                    ),
+                    subtitle: Text(
+                      phoneNumber,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 16),
+                    ),
+                    trailing: InkWell(
+                      onTap: () async {
+                        await FlutterPhoneDirectCaller.callNumber(phoneNumber);
+                      },
+                      child: const Icon(
+                        Icons.call,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

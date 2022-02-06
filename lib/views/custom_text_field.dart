@@ -29,6 +29,13 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    t1.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextField(
       controller: t1,
