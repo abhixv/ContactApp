@@ -93,8 +93,9 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                                       style: TextStyle(color: Colors.red),
                                     ),
                                     onPressed: () {
-                                      setState(() {});
+                                      contacts![index].delete();
                                       Navigator.of(context).pop();
+                                      setState(() {});
                                     },
                                   ),
                                 ],
@@ -167,9 +168,14 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                             const SizedBox(
                               width: 15,
                             ),
-                            const Icon(
-                              FluentSystemIcons.ic_fluent_call_outbound_filled,
-                              color: Colors.white,
+                            InkWell(
+                              onTap: () async {
+                                await FlutterPhoneDirectCaller.callNumber(num);
+                              },
+                              child: const Icon(
+                                Icons.call,
+                                color: Colors.white,
+                              ),
                             )
                           ],
                         ),
