@@ -65,110 +65,112 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
           style: TextStyle(fontWeight: FontWeight.w300, color: Colors.white),
         ),
       ),
-      body: Column(
-        children: [
-          FutureBuilder(
-              future: logs,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  Iterable<CallLogEntry>? entries =
-                      snapshot.data as Iterable<CallLogEntry>?;
-                  return Expanded(
-                    child: ListView.builder(
-                      physics: const ScrollPhysics(
-                          parent: BouncingScrollPhysics(
-                              parent: AlwaysScrollableScrollPhysics())),
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () => getDetail(
-                              context,
-                              cl.getTitle(entries!.elementAt(index)),
-                              cl.formatDate(DateTime.fromMillisecondsSinceEpoch(
-                                  entries.elementAt(index).timestamp!)),
-                              cl.getTime(entries.elementAt(index).duration!),
-                              entries.elementAt(index).number!),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 10),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 16, right: 16),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+      body: FutureBuilder(
+          future: logs,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              Iterable<CallLogEntry>? entries =
+                  snapshot.data as Iterable<CallLogEntry>?;
+              return ListView.builder(
+                physics: const ScrollPhysics(
+                    parent: BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics())),
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () => getDetail(
+                        context,
+                        cl.getTitle(entries!.elementAt(index)),
+                        cl.formatDate(DateTime.fromMillisecondsSinceEpoch(
+                            entries.elementAt(index).timestamp!)),
+                        cl.getTime(entries.elementAt(index).duration!),
+                        entries.elementAt(index).number!),
+                    child: Dismissible(
+                      key: UniqueKey(),
+                      background: slideLeftBackground(),
+                      confirmDismiss: (direction) async {
+                        if (direction == DismissDirection.endToStart) {
+                          await FlutterPhoneDirectCaller.callNumber(
+                              entries!.elementAt(index).number!);
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 10),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 16, right: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      CircleAvatar(
-                                          backgroundColor:
-                                              getRandomElement(randomColor),
-                                          child: const Icon(Icons.person)),
-                                      const SizedBox(
-                                        width: 15,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "${cl.getTitle(entries!.elementAt(index))}",
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w300),
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                          Text(
-                                              cl.formatDate(DateTime
-                                                      .fromMillisecondsSinceEpoch(
-                                                          entries
-                                                              .elementAt(index)
-                                                              .timestamp!)) +
-                                                  "\n" +
-                                                  cl.getTime(entries
-                                                      .elementAt(index)
-                                                      .duration!),
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w300,
-                                              )),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                  CircleAvatar(
+                                      backgroundColor:
+                                          getRandomElement(randomColor),
+                                      child: const Icon(Icons.person)),
                                   const SizedBox(
                                     width: 15,
                                   ),
-                                  GestureDetector(
-                                    onTap: () async {
-                                      await FlutterPhoneDirectCaller.callNumber(
-                                          entries.elementAt(index).number!);
-                                    },
-                                    child: const Icon(
-                                      Icons.call,
-                                      color: Colors.white,
-                                    ),
-                                  )
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "${cl.getTitle(entries!.elementAt(index))}",
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w300),
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      Text(
+                                          cl.formatDate(DateTime
+                                                  .fromMillisecondsSinceEpoch(
+                                                      entries
+                                                          .elementAt(index)
+                                                          .timestamp!)) +
+                                              "\n" +
+                                              cl.getTime(entries
+                                                  .elementAt(index)
+                                                  .duration!),
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w300,
+                                          )),
+                                    ],
+                                  ),
                                 ],
                               ),
-                            ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              GestureDetector(
+                                onTap: () async {
+                                  await FlutterPhoneDirectCaller.callNumber(
+                                      entries.elementAt(index).number!);
+                                },
+                                child: const Icon(
+                                  Icons.call,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
                           ),
-                          onLongPress: () => pt.update!(
-                              entries.elementAt(index).number.toString()),
-                        );
-                      },
-                      itemCount: entries!.length,
+                        ),
+                      ),
                     ),
+                    onLongPress: () =>
+                        pt.update!(entries.elementAt(index).number.toString()),
                   );
-                } else {
-                  return const Center(child: CircularProgressIndicator());
-                }
-              })
-        ],
-      ),
+                },
+                itemCount: entries!.length,
+              );
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.grey.withOpacity(0.3),
@@ -264,6 +266,35 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
           ],
         );
       },
+    );
+  }
+
+  Widget slideLeftBackground() {
+    return Container(
+      color: Colors.green,
+      child: Align(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const <Widget>[
+            Icon(
+              Icons.call,
+              color: Colors.white,
+            ),
+            Text(
+              " Call",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.right,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+          ],
+        ),
+        alignment: Alignment.centerRight,
+      ),
     );
   }
 
