@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.contactapp">
-   <application
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <application
         android:label="contactapp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
@@ -31,4 +33,11 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <queries>
+    <!-- If your app makes calls -->
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="tel" />
+        </intent>
+    </queries>
 </manifest>

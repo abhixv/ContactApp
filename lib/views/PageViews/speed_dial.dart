@@ -29,12 +29,16 @@ class _SpeedDialPageState extends State<SpeedDialPage> {
               border: InputBorder.none),
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.1,
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: ListView.builder(
+            physics: const ScrollPhysics(
+                parent: BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics())),
+            itemCount: speedDialName.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container();
+            }),
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.center,

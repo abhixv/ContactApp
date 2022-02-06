@@ -1,6 +1,5 @@
 import 'package:contactapp/views/PageViews/call_history.dart';
 import 'package:contactapp/views/PageViews/contact_page.dart';
-import 'package:contactapp/views/PageViews/speed_dial.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -27,9 +26,8 @@ class _HomePageState extends State<HomePage> {
         },
         controller: pageController,
         children: const [
-          SpeedDialPage(),
-          CallHistoryPage(),
           ContactPage(),
+          CallHistoryPage(),
         ],
       ),
       bottomNavigationBar: NavigationBarTheme(
@@ -50,17 +48,6 @@ class _HomePageState extends State<HomePage> {
             });
           },
           destinations: const [
-            NavigationDestination(
-              icon: Icon(
-                FluentSystemIcons.ic_fluent_dialpad_regular,
-                color: Colors.white,
-              ),
-              selectedIcon: Icon(
-                FluentSystemIcons.ic_fluent_dialpad_filled,
-                color: Colors.white,
-              ),
-              label: "Speed Dial",
-            ),
             NavigationDestination(
               icon: Icon(
                 FluentSystemIcons.ic_fluent_history_regular,
