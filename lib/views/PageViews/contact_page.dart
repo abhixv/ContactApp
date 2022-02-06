@@ -248,7 +248,9 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(50.0)),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () async {
+                    await FlutterPhoneDirectCaller.callNumber(number);
+                  },
                   child: const Center(
                       child: Icon(
                     Icons.call,
