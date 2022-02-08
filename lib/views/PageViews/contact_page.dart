@@ -6,6 +6,7 @@ import 'package:contactapp/views/service/services.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactPage extends StatefulWidget {
   const ContactPage({Key? key}) : super(key: key);
@@ -86,11 +87,20 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                         entries.elementAt(index).number!),
                     child: Dismissible(
                       key: UniqueKey(),
-                      background: slideLeftBackground(),
+                      background: slideRightBackground(),
+                      secondaryBackground: slideLeftBackground(),
                       confirmDismiss: (direction) async {
                         if (direction == DismissDirection.endToStart) {
                           await FlutterPhoneDirectCaller.callNumber(
                               entries!.elementAt(index).number!);
+                        } else {
+                          final uri =
+                              'sms:${entries!.elementAt(index).number!}?body=Hii';
+                          if (await canLaunch(uri)) {
+                            await launch(uri);
+                          } else {
+                            throw 'Could not launch $uri';
+                          }
                         }
                       },
                       child: Padding(
@@ -180,6 +190,41 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
           color: Colors.white,
         ),
         onPressed: () => getDialPad(context),
+      ),
+    );
+  }
+
+  Widget slideRightBackground() {
+    return Container(
+      color: Colors.purpleAccent,
+      child: Align(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: const <Widget>[
+            SizedBox(
+              width: 20,
+            ),
+            Icon(
+              Icons.message,
+              color: Colors.white,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Message",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ],
+        ),
+        alignment: Alignment.centerRight,
       ),
     );
   }
@@ -281,7 +326,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
               color: Colors.white,
             ),
             Text(
-              " Call",
+              " Call Now",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
