@@ -39,12 +39,16 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: t1,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w300),
-      decoration: const InputDecoration(
+      style: TextStyle(
+          color: Theme.of(context).accentColor, fontWeight: FontWeight.w300),
+      decoration: InputDecoration(
         hintText: "Search Contacts",
-        hintStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w300),
+        hintStyle: TextStyle(
+          color: Theme.of(context).accentColor,
+          fontWeight: FontWeight.w500,
+        ),
         border: InputBorder.none,
-        contentPadding: EdgeInsets.all(10),
+        contentPadding: const EdgeInsets.all(10),
       ),
       keyboardType: TextInputType.phone,
       textInputAction: TextInputAction.done,

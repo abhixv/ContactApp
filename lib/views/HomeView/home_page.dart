@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         onPageChanged: (index) {
@@ -32,9 +32,9 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).backgroundColor,
           labelTextStyle: MaterialStateProperty.all(
-            const TextStyle(color: Colors.white, fontSize: 11),
+            TextStyle(color: Theme.of(context).accentColor, fontSize: 11),
           ),
         ),
         child: NavigationBar(
@@ -47,26 +47,26 @@ class _HomePageState extends State<HomePage> {
               pageController.jumpToPage(index);
             });
           },
-          destinations: const [
+          destinations: [
             NavigationDestination(
               icon: Icon(
                 FluentSystemIcons.ic_fluent_history_regular,
-                color: Colors.white,
+                color: Theme.of(context).accentColor,
               ),
               selectedIcon: Icon(
                 FluentSystemIcons.ic_fluent_history_filled,
-                color: Colors.white,
+                color: Theme.of(context).accentColor,
               ),
               label: "Call History",
             ),
             NavigationDestination(
               icon: Icon(
                 FluentSystemIcons.ic_fluent_contact_card_regular,
-                color: Colors.white,
+                color: Theme.of(context).accentColor,
               ),
               selectedIcon: Icon(
                 FluentSystemIcons.ic_fluent_contact_card_filled,
-                color: Colors.white,
+                color: Theme.of(context).accentColor,
               ),
               label: "Contacts",
             ),

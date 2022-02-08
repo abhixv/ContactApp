@@ -58,12 +58,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text(
+        elevation: 0.0,
+        backgroundColor: Theme.of(context).backgroundColor,
+        title: Text(
           "History",
-          style: TextStyle(fontWeight: FontWeight.w300, color: Colors.white),
+          style: TextStyle(
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).accentColor),
         ),
       ),
       body: FutureBuilder(
@@ -116,7 +119,10 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                                   CircleAvatar(
                                       backgroundColor:
                                           getRandomElement(randomColor),
-                                      child: const Icon(Icons.person)),
+                                      child: Icon(
+                                        Icons.person,
+                                        color: Theme.of(context).accentColor,
+                                      )),
                                   const SizedBox(
                                     width: 15,
                                   ),
@@ -126,8 +132,9 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                                     children: [
                                       Text(
                                         "${cl.getTitle(entries!.elementAt(index))}",
-                                        style: const TextStyle(
-                                            color: Colors.white,
+                                        style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontSize: 16,
                                             fontWeight: FontWeight.w300),
                                       ),
@@ -144,8 +151,9 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                                               cl.getTime(entries
                                                   .elementAt(index)
                                                   .duration!),
-                                          style: const TextStyle(
-                                            color: Colors.white,
+                                          style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w300,
                                           )),
@@ -161,9 +169,9 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                                   await FlutterPhoneDirectCaller.callNumber(
                                       entries.elementAt(index).number!);
                                 },
-                                child: const Icon(
+                                child: Icon(
                                   Icons.call,
-                                  color: Colors.white,
+                                  color: Theme.of(context).accentColor,
                                 ),
                               )
                             ],
@@ -183,11 +191,11 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey.withOpacity(0.3),
-        child: const Icon(
+        backgroundColor: Theme.of(context).canvasColor,
+        child: Icon(
           FluentSystemIcons.ic_fluent_dialpad_filled,
           size: 30,
-          color: Colors.white,
+          color: Theme.of(context).accentColor,
         ),
         onPressed: () => getDialPad(context),
       ),
@@ -200,23 +208,23 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
       child: Align(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const <Widget>[
-            SizedBox(
+          children: <Widget>[
+            const SizedBox(
               width: 20,
             ),
             Icon(
               Icons.message,
-              color: Colors.white,
+              color: Theme.of(context).accentColor,
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 "Message",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Theme.of(context).accentColor,
                   fontWeight: FontWeight.w700,
                 ),
                 textAlign: TextAlign.left,
@@ -232,7 +240,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
   getDialPad(BuildContext context) {
     return showModalBottomSheet(
       isScrollControlled: true,
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       barrierColor: Colors.transparent,
       context: context,
       builder: (context) {
@@ -249,15 +257,16 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                     readOnly: true,
                     controller: numberController,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style: TextStyle(
+                        color: Theme.of(context).accentColor,
                         fontSize: 30,
                         fontWeight: FontWeight.w300),
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "",
                         hintStyle: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w300)),
+                            color: Theme.of(context).accentColor,
+                            fontWeight: FontWeight.w300)),
                   ),
                 ),
                 GestureDetector(
@@ -269,11 +278,11 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                       });
                     }
                   },
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Icon(
                       FluentSystemIcons.ic_fluent_backspace_regular,
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       size: 30,
                     ),
                   ),
@@ -298,10 +307,10 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                   onTap: () async {
                     await FlutterPhoneDirectCaller.callNumber(number);
                   },
-                  child: const Center(
+                  child: Center(
                       child: Icon(
                     Icons.call,
-                    color: Colors.white,
+                    color: Theme.of(context).accentColor,
                   )),
                   borderRadius: BorderRadius.circular(50.0),
                 )),
@@ -320,20 +329,20 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
       child: Align(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: const <Widget>[
+          children: <Widget>[
             Icon(
               Icons.call,
-              color: Colors.white,
+              color: Theme.of(context).accentColor,
             ),
             Text(
               " Call Now",
               style: TextStyle(
-                color: Colors.white,
+                color: Theme.of(context).accentColor,
                 fontWeight: FontWeight.w700,
               ),
               textAlign: TextAlign.right,
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
           ],
@@ -352,15 +361,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             height: MediaQuery.of(context).size.height / 11.5,
             width: MediaQuery.of(context).size.width / 5.45,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(50.0)),
             child: InkWell(
               onTap: () => numberClick("1"),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "1",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -374,15 +383,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             height: MediaQuery.of(context).size.height / 11.5,
             width: MediaQuery.of(context).size.width / 5.45,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(50.0)),
             child: InkWell(
               onTap: () => numberClick("2"),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "2",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -396,15 +405,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             height: MediaQuery.of(context).size.height / 11.5,
             width: MediaQuery.of(context).size.width / 5.45,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(50.0)),
             child: InkWell(
               onTap: () => numberClick("3"),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "3",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -427,15 +436,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             height: MediaQuery.of(context).size.height / 11.5,
             width: MediaQuery.of(context).size.width / 5.45,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(50.0)),
             child: InkWell(
               onTap: () => numberClick("4"),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "4",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -449,15 +458,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             height: MediaQuery.of(context).size.height / 11.5,
             width: MediaQuery.of(context).size.width / 5.45,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(50.0)),
             child: InkWell(
               onTap: () => numberClick("5"),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "5",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -471,15 +480,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             height: MediaQuery.of(context).size.height / 11.5,
             width: MediaQuery.of(context).size.width / 5.45,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(50.0)),
             child: InkWell(
               onTap: () => numberClick("6"),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "6",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -502,15 +511,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             height: MediaQuery.of(context).size.height / 11.5,
             width: MediaQuery.of(context).size.width / 5.45,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(50.0)),
             child: InkWell(
               onTap: () => numberClick("7"),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "7",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -524,15 +533,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             height: MediaQuery.of(context).size.height / 11.5,
             width: MediaQuery.of(context).size.width / 5.45,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(50.0)),
             child: InkWell(
               onTap: () => numberClick("8"),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "8",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -546,15 +555,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             height: MediaQuery.of(context).size.height / 11.5,
             width: MediaQuery.of(context).size.width / 5.45,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(50.0)),
             child: InkWell(
               onTap: () => numberClick("9"),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "9",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -577,15 +586,15 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             height: MediaQuery.of(context).size.height / 11.5,
             width: MediaQuery.of(context).size.width / 5.45,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.circular(50.0)),
             child: InkWell(
               onTap: () => numberClick("0"),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "0",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -629,14 +638,14 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
       String duration, String phoneNumber) {
     return showModalBottomSheet(
         isScrollControlled: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Theme.of(context).backgroundColor,
         barrierColor: Colors.transparent,
         context: context,
         builder: (context) {
           return Container(
             height: MediaQuery.of(context).size.height * 0.6,
             width: MediaQuery.of(context).size.width,
-            color: Colors.black,
+            color: Theme.of(context).backgroundColor,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -651,7 +660,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                             topRight: Radius.circular(10))),
                     child: Icon(
                       Icons.person,
-                      color: Colors.white,
+                      color: Theme.of(context).accentColor,
                       size: MediaQuery.of(context).size.width * 0.5,
                     ),
                   ),
@@ -661,53 +670,53 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                   ListTile(
                     title: Text(
                       firstName,
-                      style: const TextStyle(
-                          color: Colors.white,
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 25),
                     ),
                     subtitle: Text(
                       date,
-                      style: const TextStyle(
-                          color: Colors.white,
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 16),
                     ),
                   ),
-                  const Divider(
-                    color: Colors.grey,
+                  Divider(
+                    color: Theme.of(context).canvasColor,
                   ),
                   ListTile(
-                    title: const Text(
+                    title: Text(
                       "Duration",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 18),
                     ),
                     subtitle: Text(
                       duration,
-                      style: const TextStyle(
-                          color: Colors.white,
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 16),
                     ),
                   ),
-                  const Divider(
-                    color: Colors.grey,
+                  Divider(
+                    color: Theme.of(context).canvasColor,
                   ),
                   ListTile(
-                    title: const Text(
+                    title: Text(
                       "Phone Number",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 18),
                     ),
                     subtitle: Text(
                       phoneNumber,
-                      style: const TextStyle(
-                          color: Colors.white,
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 16),
                     ),
@@ -715,9 +724,9 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                       onTap: () async {
                         await FlutterPhoneDirectCaller.callNumber(phoneNumber);
                       },
-                      child: const Icon(
+                      child: Icon(
                         Icons.call,
-                        color: Colors.white,
+                        color: Theme.of(context).accentColor,
                       ),
                     ),
                   ),

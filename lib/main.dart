@@ -1,3 +1,4 @@
+import 'package:contactapp/theme.dart';
 import 'package:contactapp/views/HomeView/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      themeMode: ThemeMode.system,
+      theme: MyTheme.light(context),
+      darkTheme: MyTheme.dark(context),
       home: const HomePage(),
     );
   }
