@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
         data: NavigationBarThemeData(
           backgroundColor: Theme.of(context).backgroundColor,
           labelTextStyle: MaterialStateProperty.all(
-            TextStyle(color: Theme.of(context).accentColor, fontSize: 11),
+            TextStyle(color: Theme.of(context).hintColor, fontSize: 11),
           ),
         ),
         child: NavigationBar(
@@ -51,22 +51,22 @@ class _HomePageState extends State<HomePage> {
             NavigationDestination(
               icon: Icon(
                 FluentSystemIcons.ic_fluent_history_regular,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).hintColor,
               ),
               selectedIcon: Icon(
                 FluentSystemIcons.ic_fluent_history_filled,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).hintColor,
               ),
               label: "Call History",
             ),
             NavigationDestination(
               icon: Icon(
                 FluentSystemIcons.ic_fluent_contact_card_regular,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).hintColor,
               ),
               selectedIcon: Icon(
                 FluentSystemIcons.ic_fluent_contact_card_filled,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).hintColor,
               ),
               label: "Contacts",
             ),

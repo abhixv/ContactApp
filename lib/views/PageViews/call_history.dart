@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:contactapp/views/custom_text_field.dart';
 import 'package:contactapp/views/service/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
@@ -39,7 +40,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
           padding: EdgeInsets.only(left: 10),
           child: Icon(
             Icons.search,
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).hintColor,
           ),
         ),
         title: PhoneTextField(),
@@ -75,17 +76,17 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                                 content: const Text(
                                     "Are you sure you want to delete?"),
                                 actions: <Widget>[
-                                  FlatButton(
+                                  TextButton(
                                     child: Text(
                                       "Cancel",
                                       style: TextStyle(
-                                          color: Theme.of(context).accentColor),
+                                          color: Theme.of(context).hintColor),
                                     ),
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
                                   ),
-                                  FlatButton(
+                                  TextButton(
                                     child: const Text(
                                       "Delete",
                                       style: TextStyle(color: Colors.red),
@@ -110,7 +111,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                           content: Text(
                             '${contacts![index].name.first} Deleted',
                             style: TextStyle(
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).hintColor,
                                 fontWeight: FontWeight.w300),
                           )));
                       setState(() {
@@ -133,7 +134,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                                             getRandomElement(randomColor),
                                         child: Icon(
                                           Icons.person,
-                                          color: Theme.of(context).accentColor,
+                                          color: Theme.of(context).hintColor,
                                         ))
                                     : CircleAvatar(
                                         backgroundColor:
@@ -149,7 +150,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                                     Text(
                                       "${contacts![index].name.first} ${contacts![index].name.last}",
                                       style: TextStyle(
-                                          color: Theme.of(context).accentColor,
+                                          color: Theme.of(context).hintColor,
                                           fontSize: 16,
                                           fontWeight: FontWeight.w300),
                                     ),
@@ -176,7 +177,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                               },
                               child: Icon(
                                 Icons.call,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).hintColor,
                               ),
                             )
                           ],
@@ -202,7 +203,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
             ),
             Icon(
               Icons.call,
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).hintColor,
             ),
             const SizedBox(
               width: 10,
@@ -212,7 +213,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
               child: Text(
                 "Call now",
                 style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).hintColor,
                   fontWeight: FontWeight.w300,
                 ),
                 textAlign: TextAlign.right,
@@ -234,14 +235,14 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
           children: <Widget>[
             Icon(
               Icons.delete,
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).hintColor,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 " Delete",
                 style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).hintColor,
                   fontWeight: FontWeight.w300,
                 ),
                 textAlign: TextAlign.left,
@@ -282,7 +283,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                           topRight: Radius.circular(10))),
                   child: Icon(
                     Icons.person,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).hintColor,
                     size: MediaQuery.of(context).size.width * 0.5,
                   ),
                 ),
@@ -293,7 +294,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                   title: Text(
                     "$firstName $lastName",
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).hintColor,
                         fontWeight: FontWeight.w300,
                         fontSize: 25),
                   ),
@@ -308,14 +309,14 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                   title: Text(
                     "Phone Number",
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).hintColor,
                         fontWeight: FontWeight.w300,
                         fontSize: 18),
                   ),
                   subtitle: Text(
                     phoneNumber,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).hintColor,
                         fontWeight: FontWeight.w300,
                         fontSize: 14),
                   ),
@@ -325,7 +326,7 @@ class _CallHistoryPageState extends State<CallHistoryPage> {
                     },
                     child: Icon(
                       Icons.call,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                     ),
                   ),
                 ),

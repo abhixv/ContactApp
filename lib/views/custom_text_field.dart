@@ -40,11 +40,11 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
     return TextField(
       controller: t1,
       style: TextStyle(
-          color: Theme.of(context).accentColor, fontWeight: FontWeight.w300),
+          color: Theme.of(context).hintColor, fontWeight: FontWeight.w300),
       decoration: InputDecoration(
         hintText: "Search Contacts",
         hintStyle: TextStyle(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).hintColor,
           fontWeight: FontWeight.w500,
         ),
         border: InputBorder.none,

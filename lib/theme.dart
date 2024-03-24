@@ -7,7 +7,7 @@ class MyTheme {
       ),
       brightness: Brightness.light,
       backgroundColor: Colors.white,
-      accentColor: Colors.black,
+      hintColor: Colors.black,
       canvasColor: Colors.grey);
 
   static ThemeData dark(BuildContext context) => ThemeData(
@@ -17,6 +17,6 @@ class MyTheme {
       ),
       brightness: Brightness.dark,
       backgroundColor: Colors.black,
-      accentColor: Colors.white,
+      hintColor: Colors.white,
       canvasColor: Colors.grey);
 }

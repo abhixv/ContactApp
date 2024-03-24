@@ -65,8 +65,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
         title: Text(
           "History",
           style: TextStyle(
-              fontWeight: FontWeight.w500,
-              color: Theme.of(context).accentColor),
+              fontWeight: FontWeight.w500, color: Theme.of(context).hintColor),
         ),
       ),
       body: FutureBuilder(
@@ -121,7 +120,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                                           getRandomElement(randomColor),
                                       child: Icon(
                                         Icons.person,
-                                        color: Theme.of(context).accentColor,
+                                        color: Theme.of(context).hintColor,
                                       )),
                                   const SizedBox(
                                     width: 15,
@@ -133,8 +132,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                                       Text(
                                         "${cl.getTitle(entries!.elementAt(index))}",
                                         style: TextStyle(
-                                            color:
-                                                Theme.of(context).accentColor,
+                                            color: Theme.of(context).hintColor,
                                             fontSize: 16,
                                             fontWeight: FontWeight.w300),
                                       ),
@@ -152,8 +150,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                                                   .elementAt(index)
                                                   .duration!),
                                           style: TextStyle(
-                                            color:
-                                                Theme.of(context).accentColor,
+                                            color: Theme.of(context).hintColor,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w300,
                                           )),
@@ -171,7 +168,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                                 },
                                 child: Icon(
                                   Icons.call,
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).hintColor,
                                 ),
                               )
                             ],
@@ -195,7 +192,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
         child: Icon(
           FluentSystemIcons.ic_fluent_dialpad_filled,
           size: 30,
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).hintColor,
         ),
         onPressed: () => getDialPad(context),
       ),
@@ -214,7 +211,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
             ),
             Icon(
               Icons.message,
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).hintColor,
             ),
             const SizedBox(
               width: 10,
@@ -224,7 +221,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
               child: Text(
                 "Message",
                 style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).hintColor,
                   fontWeight: FontWeight.w700,
                 ),
                 textAlign: TextAlign.left,
@@ -258,14 +255,14 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                     controller: numberController,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).hintColor,
                         fontSize: 30,
                         fontWeight: FontWeight.w300),
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "",
                         hintStyle: TextStyle(
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).hintColor,
                             fontWeight: FontWeight.w300)),
                   ),
                 ),
@@ -282,7 +279,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                     padding: const EdgeInsets.all(8.0),
                     child: Icon(
                       FluentSystemIcons.ic_fluent_backspace_regular,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       size: 30,
                     ),
                   ),
@@ -310,7 +307,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                   child: Center(
                       child: Icon(
                     Icons.call,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).hintColor,
                   )),
                   borderRadius: BorderRadius.circular(50.0),
                 )),
@@ -332,12 +329,12 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
           children: <Widget>[
             Icon(
               Icons.call,
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).hintColor,
             ),
             Text(
               " Call Now",
               style: TextStyle(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).hintColor,
                 fontWeight: FontWeight.w700,
               ),
               textAlign: TextAlign.right,
@@ -369,7 +366,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                 child: Text(
                   "1",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -391,7 +388,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                 child: Text(
                   "2",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -413,7 +410,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                 child: Text(
                   "3",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -444,7 +441,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                 child: Text(
                   "4",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -466,7 +463,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                 child: Text(
                   "5",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -488,7 +485,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                 child: Text(
                   "6",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -519,7 +516,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                 child: Text(
                   "7",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -541,7 +538,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                 child: Text(
                   "8",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -563,7 +560,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                 child: Text(
                   "9",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -594,7 +591,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                 child: Text(
                   "0",
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 30.0),
                 ),
@@ -660,7 +657,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                             topRight: Radius.circular(10))),
                     child: Icon(
                       Icons.person,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).hintColor,
                       size: MediaQuery.of(context).size.width * 0.5,
                     ),
                   ),
@@ -671,14 +668,14 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                     title: Text(
                       firstName,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).hintColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 25),
                     ),
                     subtitle: Text(
                       date,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).hintColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 16),
                     ),
@@ -690,14 +687,14 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                     title: Text(
                       "Duration",
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).hintColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 18),
                     ),
                     subtitle: Text(
                       duration,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).hintColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 16),
                     ),
@@ -709,14 +706,14 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                     title: Text(
                       "Phone Number",
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).hintColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 18),
                     ),
                     subtitle: Text(
                       phoneNumber,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).hintColor,
                           fontWeight: FontWeight.w300,
                           fontSize: 16),
                     ),
@@ -726,7 +723,7 @@ class _ContactPageState extends State<ContactPage> with WidgetsBindingObserver {
                       },
                       child: Icon(
                         Icons.call,
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).hintColor,
                       ),
                     ),
                   ),
