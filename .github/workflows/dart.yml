@@ -1,0 +1,55 @@
+
+
+name: Flutter Build and Release
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Set up Java 17 for Gradle
+      - name: Set up Java 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # Set up the Flutter environment
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.4' # Update to the desired Flutter version
+
+      # Get dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Build APK
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Create Tag
+        run: |
+          git config --global user.email "abhi.sharma1@hotmail.com"
+          git config --global user.name "abhixv"
+          git tag v1.0.${{ github.run_number }}
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/abhixv/Atmosphere.git
+          git push origin v1.0.${{ github.run_number }}
+
+      # Upload APK to GitHub Release
+      - name: Create Release and Upload APK
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/app/outputs/flutter-apk/app-release.apk
+          tag_name: v1.0.${{ github.run_number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
